@@ -1,0 +1,34 @@
+/* Navbar 样式 */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.navbar-tabs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #666;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-tab:hover {
+    color: #007bff;
+}
+
+.navbar-tab.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+}

@@ -1,0 +1,178 @@
+/* Home 页面样式 */
+.home {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 餐厅头部信息 */
+.restaurant-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.restaurant-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.restaurant-name {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.restaurant-category,
+.restaurant-description {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.restaurant-rating {
+    font-size: 1.2rem;
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+/* 搜索菜单 */
+.menu-search {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-bar {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.menu-content {
+    display: flex;
+}
+
+/* 菜单部分 */
+.menu-title {
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #333;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-item-info {
+    padding: 15px;
+}
+
+.menu-item-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.menu-item-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 10px 0;
+}
+
+.menu-item-price {
+    font-size: 1.1rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* 数量选择器 */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+    background-color: #0056b3;
+}
+
+.quantity-value {
+    font-size: 1rem;
+    margin: 0 10px;
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 没有找到的菜单项提示 */
+.no-items-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* 底部导航 */
+.home-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #ff8c00;
+}
