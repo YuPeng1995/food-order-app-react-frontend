@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Axios from 'axios';
 import restaurant from "../../restaurant";
-import "./../../styles/Home.css"; // 可选的样式文件
+import "./../../styles/UserHome.css"; // 可选的样式文件
 import Restaurant from "./Restaurant";
 import UserNavbar from "./UserNavbar";
+import UserFooter from "./UserFooter";
 
 // 请求餐厅信息的函数
 const fetchRestaurant = async () => {
@@ -16,9 +17,10 @@ export default function Home() {
     const [searchQuery, setSearchQuery] = useState(""); // 搜索框内容
     const [searchParams, setSearchParams] = useSearchParams();
     const [category, setCategory] = useState("");
+    const categories = ["Best Sellers", "Combo Meals", "Beverages", "Desserts"];
 
     useEffect(() => {
-        if (!searchParams.get("category")) {
+        if (location.pathname === "/user/category/list" && !searchParams.get("category")) {
             setSearchParams({ category: "best-sellers" }); // Default to "best-sellers"
         } else {
             setCategory(searchParams.get("category"));
@@ -37,12 +39,6 @@ export default function Home() {
         )
         : restaurant.menu;
 
-    const categories = ["Best Sellers", "Combo Meals", "Beverages", "Desserts"];
-    const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
-    const handleTabChange = (category) => {
-        setCurrentCategory(category);
-    };
 
     return (
         <div className="home">
@@ -69,7 +65,7 @@ export default function Home() {
                 <UserNavbar categories={categories} onTabChange={handleCategoryChange} />
                 <Restaurant displayedMenu={displayedMenu} />
             </div>
+            <UserFooter />
         </div>
-
     );
 }

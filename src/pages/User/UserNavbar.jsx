@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./../../styles/UserNavbar.css"; // 引入样式文件
 
 const UserNavbar = ({ categories, onTabChange }) => {
     const [activeTab, setActiveTab] = useState(categories[0]); // 默认选中第一个分类
