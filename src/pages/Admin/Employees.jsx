@@ -1,11 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminNavbar from "./AdminNavbar";
 import adminApiClient from "../../utils/adminApiClient";
 import { useDispatch } from "react-redux";
+import NewEmployee from "./NewEmployee";
 
 export default function Employees() {
     const [currentPage, setCurrentPage] = useState("display");
     const dispatch = useDispatch();
+
+    const [employees, setEmployees] = useState([]); // State for storing the list of users
+    const [loading, setLoading] = useState(true); // State for loading indicator
+    const [error, setError] = useState(null); // State for error handling
+
+    function getEmployees() {
+        adminApiClient.get('http://localhost:8080/admin/employee/page', {
+            params: {
+                page: 1,
+                pageSize: 5,
+            }
+        })
+            .then((response) => {
+                setEmployees(response.data.data.records); // Axios automatically parses JSON
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
+            });
+    }
+
+    useEffect(() => getEmployees(), []);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     async function handleSubmitNewEmployee(e) {
         e.preventDefault();
@@ -25,8 +52,6 @@ export default function Employees() {
                 gender,
                 driverLicense
             });
-            console.log("Success." + response.data);
-
             setCurrentPage("display");
         } catch (error) {
             console.error('There was an error logging in!', error);
@@ -38,54 +63,54 @@ export default function Employees() {
         }
     }
 
+    async function handleEnableAndDisableEmployee(status, id) {
+        try {
+            const response = await adminApiClient
+                .post(`http://localhost:8080/admin/employee/status/${status === 0 ? 1 : 0}`, null, {
+                    params: {id: id},
+                });
+            getEmployees();
+        } catch (error) {
+            console.error('There was an error logging in!', error);
+        }
+    }
+
     return (
         <div className="admin-employees">
             <AdminNavbar />
             {currentPage === "display" &&
                 <div className="admin-display-employees">
                     <h1>Current Employees</h1>
-                    <button onClick={() => setCurrentPage("new-employee")}>Add New Employee</button>
+                    <button className="new-employee-button" onClick={() => setCurrentPage("new-employee")}>Add New Employee</button>
+                    <ul className="employee-table">
+                        <li className="table-header">
+                            <span>Username</span>
+                            <span>Name</span>
+                            <span>Phone</span>
+                            <span>Status</span>
+                            <span>Update Time</span>
+                            <span>Actions</span>
+                        </li>
+                        {employees.map((employee, index) => (
+                            <li key={index} className="table-row">
+                                <span>{employee.username}</span>
+                                <span>{employee.name}</span>
+                                <span>{employee.phone}</span>
+                                {employee.status === 0 ? <span>Disabled</span> : <span>Enabled</span>}
+                                <span>{employee.updateTime}</span>
+                                <div className="actions">
+                                    <button>Update</button>
+                                    {employee.status === 0 ?
+                                        <button onClick={() => handleEnableAndDisableEmployee(employee.status, employee.id)}>Enable</button> :
+                                        <button onClick={() => handleEnableAndDisableEmployee(employee.status, employee.id)}>Disable</button>}
+                                    <button>Delete</button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             }
-            {currentPage === "new-employee" &&
-                <div className="admin-new-employee">
-                    <h2>Add Employee</h2>
-                    <form onSubmit={handleSubmitNewEmployee}>
-                        <div className="form-group">
-                            <label htmlFor="username">Username</label>
-                            <input type="text" id="username" name="username" />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" id="name" name="name" />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="phone">Phone</label>
-                            <input type="text" id="phone" name="phone" />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Gender</label>
-                            <div className="gender-options">
-                                <input type="radio" id="male" name="gender" value="0" />
-                                <label htmlFor="male">Male</label>
-                                <input type="radio" id="female" name="gender" value="1" />
-                                <label htmlFor="female">Female</label>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="driver-license">Driver's License</label>
-                            <input type="text" id="driver-license" name="driver-license" />
-                        </div>
-
-                        <button type="submit" className="submit-button">Submit</button>
-                    </form>
-                </div>
-
-            }
+            {currentPage === "new-employee" && <NewEmployee handleSubmitNewEmployee={handleSubmitNewEmployee} />}
         </div>
     );
 }
