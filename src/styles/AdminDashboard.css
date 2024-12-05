@@ -54,7 +54,7 @@
     margin-bottom: 20px;
 }
 
-.admin-new-employee {
+.admin-new-employee, .admin-update-employee {
     width: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -64,14 +64,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.admin-new-employee h2 {
+.admin-new-employee h2, .admin-update-employee h2 {
     text-align: center;
     margin-bottom: 20px;
     font-family: Arial, sans-serif;
     color: #333;
 }
 
-.admin-new-employee form {
+.admin-new-employee form, .admin-update-employee form {
     display: flex;
     flex-direction: column;
     gap: 20px;

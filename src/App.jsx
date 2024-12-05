@@ -19,6 +19,7 @@ import Orders from "./pages/Admin/Orders";
 import Reports from "./pages/Admin/Reports";
 import Login from "./pages/Admin/Login";
 import Employees from "./pages/Admin/Employees";
+import UpdateEmployee from "./pages/Admin/UpdateEmployee";
 import Test from "./Test";
 import { AdminPrivateRoute } from "./components/PrivateRoute";
 
@@ -56,6 +57,7 @@ function App() {
               <Route path="/admin/orders" element={<AdminPrivateRoute><Orders /></AdminPrivateRoute>} />
               <Route path="/admin/reports" element={<AdminPrivateRoute><Reports /></AdminPrivateRoute>} />
               <Route path="/admin/employees" element={<AdminPrivateRoute><Employees /></AdminPrivateRoute>} />
+              <Route path="/admin/employee" element={<AdminPrivateRoute><UpdateEmployee /></AdminPrivateRoute>} />
             </Routes>
           </div>
         </Router>
