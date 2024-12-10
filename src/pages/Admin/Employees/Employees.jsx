@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import AdminNavbar from "./AdminNavbar";
-import adminApiClient from "../../utils/adminApiClient";
+import AdminNavbar from "../AdminNavbar";
+import adminApiClient from "../../../utils/adminApiClient";
 import { useDispatch } from "react-redux";
 import NewEmployee from "./NewEmployee";
 import DisplayEmployees from "./DisplayEmployees";
@@ -16,7 +16,7 @@ export default function Employees() {
         adminApiClient.get('http://localhost:8080/admin/employee/page', {
             params: {
                 page: 1,
-                pageSize: 5,
+                pageSize: 10,
             }
         })
             .then((response) => {
@@ -80,7 +80,7 @@ export default function Employees() {
                 setCurrentPage={setCurrentPage}
                 handleEnableAndDisableEmployee={handleEnableAndDisableEmployee}
             />}
-            {currentPage === "new-employee" && <NewEmployee handleSubmitNewEmployee={handleSubmitNewEmployee} />}
+            {currentPage === "new-employee" && <NewEmployee handleSubmitNewEmployee={handleSubmitNewEmployee} setCurrentPage={setCurrentPage} />}
         </div>
     );
 }

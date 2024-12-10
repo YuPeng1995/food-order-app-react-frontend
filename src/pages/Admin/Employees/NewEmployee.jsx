@@ -1,4 +1,4 @@
-export default function NewEmployee({ handleSubmitNewEmployee }) {
+export default function NewEmployee({ handleSubmitNewEmployee, setCurrentPage }) {
     return (
         <div className="admin-new-employee">
             <h2>Add Employee</h2>
@@ -34,6 +34,7 @@ export default function NewEmployee({ handleSubmitNewEmployee }) {
                 </div>
 
                 <button type="submit" className="submit-button">Submit</button>
+                <button onClick={() => setCurrentPage("display")}>Cancel</button>
             </form>
         </div>
     );

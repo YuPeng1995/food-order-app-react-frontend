@@ -1,6 +1,7 @@
 /* Admin Dashboard CSS */
 .admin-dashboard,
-.admin-employees {
+.admin-employees,
+.admin-categories {
     display: flex;
     width: 100%;
     height: 100vh;
@@ -131,7 +132,7 @@
 }
 
 /* Container */
-.admin-display-employees {
+.admin-display-employees, .admin-display-categories {
     margin: 20px auto;
     padding: 20px;
     width: 75%;
@@ -139,7 +140,7 @@
 }
 
 /* Title */
-.admin-display-employees h1 {
+.admin-display-employees h1, .admin-display-categories h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
@@ -165,11 +166,11 @@
 }
 
 /* Employee Table */
-.employee-table {
+.employee-table, .categories-table {
     list-style: none;
     padding: 0;
     margin: 0;
-    border-collapse: collapse;
+    border-collapse: collapse;    
     width: 100%;
     font-family: inherit;
     border: 1px solid #ccc;

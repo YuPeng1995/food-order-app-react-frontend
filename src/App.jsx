@@ -9,17 +9,17 @@ import Home from "./pages/User/Home";
 import Restaurant from "./pages/User/Restaurant";
 import ChatList from "./pages/ChatList";
 import ChatWindow from "./pages/ChatWindow";
-import UserFooter from "./pages/User/UserFooter";
 import Cart from "./pages/User/Cart";
 import OrderDetail from "./pages/User/OrderDetail";
-import Profile from "./pages/User/Profile";
 import Dashboard from "./pages/Admin/Dashboard";
 import Dishes from "./pages/Admin/Dishes";
 import Orders from "./pages/Admin/Orders";
 import Reports from "./pages/Admin/Reports";
 import Login from "./pages/Admin/Login";
-import Employees from "./pages/Admin/Employees";
-import UpdateEmployee from "./pages/Admin/UpdateEmployee";
+import Employees from "./pages/Admin/Employees/Employees";
+import Categories from "./pages/Admin/Categories/Categories";
+import UpdateEmployee from "./pages/Admin/Employees/UpdateEmployee";
+import UpdateCategory from "./pages/Admin/Categories/UpdateCategory";
 import Test from "./Test";
 import { AdminPrivateRoute } from "./components/PrivateRoute";
 
@@ -58,6 +58,8 @@ function App() {
               <Route path="/admin/reports" element={<AdminPrivateRoute><Reports /></AdminPrivateRoute>} />
               <Route path="/admin/employees" element={<AdminPrivateRoute><Employees /></AdminPrivateRoute>} />
               <Route path="/admin/employee" element={<AdminPrivateRoute><UpdateEmployee /></AdminPrivateRoute>} />
+              <Route path="/admin/categories" element={<AdminPrivateRoute><Categories /></AdminPrivateRoute>} />
+              <Route path="/admin/category" element={<AdminPrivateRoute><UpdateCategory /></AdminPrivateRoute>} />
             </Routes>
           </div>
         </Router>

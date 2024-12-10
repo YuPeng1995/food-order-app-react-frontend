@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import { useEffect, useState } from "react";
-import adminApiClient from "../../utils/adminApiClient";
+import adminApiClient from "../../../utils/adminApiClient";
 import { useNavigate } from "react-router-dom";
 
 export default function UpdateEmployee() {
